@@ -32,4 +32,7 @@ jobs:
         run: |
           git config user.name "$GIT_AUTHOR_NAME"
           git config user.email "$GIT_AUTHOR_EMAIL"
-          npx gh-pages -d dist -r https://x-access-token:$GH_TOKEN@github.com/${GITHUB_REPOSITORY}.git
+          npx gh-pages
+          -d dist \
+          -r https://x-access-token:$GH_TOKEN@github.com/${GITHUB_REPOSITORY}.git \
+          -m "Publish site from main @ ${{ github.sha }}"
