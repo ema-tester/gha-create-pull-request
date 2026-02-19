@@ -1,0 +1,13 @@
+{
+  "name": "fake",
+  "version": "1.0.0",
+  "description": "fake",
+  "scripts": {
+    "deploy": "gh-pages -d dist",
+  },
+  "author": "mnau23",
+  "license": "MIT",
+  "dependencies": {
+    "gh-pages": "6.3.0"
+  }
+}
