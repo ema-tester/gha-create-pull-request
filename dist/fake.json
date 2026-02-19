@@ -1,4 +1,5 @@
 {
   "test": "test",
-  "prova": 1
+  "prova": 1,
+  "empty": []
 }
