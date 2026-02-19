@@ -1,5 +1,6 @@
 {
   "test": "test",
   "prova": 1,
-  "empty": []
+  "empty": [],
+  "another": 1
 }
