@@ -29,9 +29,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_AUTHOR_NAME: "github-actions[bot]"
           GIT_AUTHOR_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
-          GIT_COMMITTER_NAME: "github-actions[bot]"
-          GIT_COMMITTER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
         run: |
-          git config --local user.name "$GIT_AUTHOR_NAME"
-          git config --local user.email "$GIT_AUTHOR_EMAIL"
-          npm run deploy
+          git config user.name "$GIT_AUTHOR_NAME"
+          git config user.email "$GIT_AUTHOR_EMAIL"
+          npx gh-pages -d dist -r https://x-access-token:$GH_TOKEN@github.com/${GITHUB_REPOSITORY}.git
