@@ -8,6 +8,6 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1
+    rev: v1.30
     hooks:
       - id: typos
