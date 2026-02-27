@@ -29,7 +29,8 @@ jobs:
       - name: Format sitemap
         run: |
           sudo apt-get install -y libxml2-utils
-          xmllint --format dist/sitemap.xml --output dist/sitemap.xml
+          xmllint --format dist/sitemap.xml > dist/tmp.xml
+          mv dist/tmp.xml dist/sitemap.xml
 
       - name: Log stats
         run: |
