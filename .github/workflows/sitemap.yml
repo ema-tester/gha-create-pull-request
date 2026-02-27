@@ -25,10 +25,18 @@ jobs:
         with:
           base-url-path: https://emanuele.codes/
           path-to-root: dist
+      
+      - name: Format sitemap
+        run: xmllint --format dist/sitemap.xml --output dist/sitemap.xml
 
       - name: Log stats
         run: |
-          echo "Included URLs: ${{ steps.sitemap.outputs.url-count }}"
+          echo "Included URL: ${{ steps.sitemap.outputs.url-count }}"
+
+      - name: Summary
+        run: |
+          echo "### Sitemap updated :white_check_mark:" >> $GITHUB_STEP_SUMMARY
+          echo "**Included URL:** ${{ steps.sitemap.outputs.url-count }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Commit to current branch
         uses: stefanzweifel/git-auto-commit-action@v7
