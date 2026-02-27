@@ -1,0 +1,38 @@
+name: Update sitemap
+
+on:
+  pull_request:
+    branches-ignore:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-and-commit-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Generate sitemap
+        id: sitemap
+        uses: cicirello/generate-sitemap@v1
+        with:
+          base-url-path: https://mnau23.github.io/
+          path-to-root: dist
+          sitemap-path: dist/
+
+      - name: Log stats
+        run: |
+          echo "Included URLs: ${{ steps.sitemap.outputs.url-count }}"
+          echo "Excluded URLs: ${{ steps.sitemap.outputs.excluded-count }}"
+          echo "OUTPUTS: ${{ steps.sitemap.outputs }}"
+
+      - name: Commit sitemap to current branch
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "[action] update sitemap.xml"
+          file_pattern: dist/sitemap.xml
