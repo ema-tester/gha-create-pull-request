@@ -7,8 +7,10 @@ permissions:
   contents: write
 
 jobs:
-  update-and-commit-sitemap:
+  update-sitemap:
     runs-on: ubuntu-latest
+    # skip draft PRs and those opened by bots
+    if: github.event.pull_request.draft == false && github.actor != 'dependabot[bot]' && github.actor != 'github-actions[bot]'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -19,18 +21,16 @@ jobs:
         id: sitemap
         uses: cicirello/generate-sitemap@v1
         with:
-          base-url-path: https://mnau23.github.io/
+          base-url-path: https://emanuele.codes/
           path-to-root: dist
-          sitemap-path: dist/
 
       - name: Log stats
         run: |
           echo "Included URLs: ${{ steps.sitemap.outputs.url-count }}"
-          echo "Excluded URLs: ${{ steps.sitemap.outputs.excluded-count }}"
-          echo "OUTPUTS: ${{ steps.sitemap.outputs }}"
 
-      - name: Commit sitemap to current branch
+      - name: Commit to current branch
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "[action] update sitemap.xml"
           file_pattern: dist/sitemap.xml
+          commit_author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
