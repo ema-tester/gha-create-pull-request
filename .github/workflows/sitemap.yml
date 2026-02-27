@@ -25,9 +25,11 @@ jobs:
         with:
           base-url-path: https://emanuele.codes/
           path-to-root: dist
-      
+
       - name: Format sitemap
-        run: xmllint --format dist/sitemap.xml --output dist/sitemap.xml
+        run: |
+          sudo apt-get install -y libxml2-utils
+          xmllint --format dist/sitemap.xml --output dist/sitemap.xml
 
       - name: Log stats
         run: |
