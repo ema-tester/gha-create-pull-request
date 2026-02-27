@@ -34,5 +34,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "[action] update sitemap.xml"
-          file_pattern: dist/sitemap.xml
-          commit_author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          file_pattern: "dist/sitemap.xml"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
