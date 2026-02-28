@@ -34,7 +34,6 @@ jobs:
 
       - name: Show stats
         run: |
-          echo "### :link: Sitemap updated" >> $GITHUB_STEP_SUMMARY
           echo "File saved at: ${{ steps.sitemap.outputs.sitemap-path }}" >> $GITHUB_STEP_SUMMARY
           echo "Number of URLs tracked: ${{ steps.sitemap.outputs.url-count }}" >> $GITHUB_STEP_SUMMARY
 
