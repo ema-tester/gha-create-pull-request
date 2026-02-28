@@ -32,14 +32,11 @@ jobs:
           xmllint --format dist/sitemap.xml > dist/tmp.xml
           mv dist/tmp.xml dist/sitemap.xml
 
-      - name: Log stats
+      - name: Show stats
         run: |
-          echo "Included URL: ${{ steps.sitemap.outputs.url-count }}"
-
-      - name: Summary
-        run: |
-          echo "### Sitemap updated :white_check_mark:" >> $GITHUB_STEP_SUMMARY
-          echo "**Included URL:** ${{ steps.sitemap.outputs.url-count }}" >> $GITHUB_STEP_SUMMARY
+          echo "### :link: Sitemap updated" >> $GITHUB_STEP_SUMMARY
+          echo "File saved at: ${{ steps.sitemap.outputs.sitemap-path }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of URLs tracked: ${{ steps.sitemap.outputs.url-count }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Commit to current branch
         uses: stefanzweifel/git-auto-commit-action@v7
